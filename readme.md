@@ -79,3 +79,10 @@ If you are sensitive to photosensitive epilepsy it is not recommended that you u
 In case you still want to try, don't use strobe, lighting or noise modes or high effect speed settings.
 As per the MIT license, I assume no liability for any damage to you or any other person or equipment.  
 
+
+*This fork contains a user mod configuration that uses 128x64 OLED Screen (i2c) with a rotary encoder knobs with a relay normally open
+
+<img src="/images/USER_MOD_ALT_CONFIG_UI.jpg" width="50%">
+
+PCB gerber of proyect is included in folder PCB
+

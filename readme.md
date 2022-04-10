@@ -82,7 +82,7 @@ As per the MIT license, I assume no liability for any damage to you or any other
 
 *This fork contains a user mod configuration that uses 128x64 OLED Screen (i2c) with a rotary encoder knobs with a relay normally open
 
-<img src="/images/USER_MOD_ALT_CONFIG_UI.jpg" width="50%">
+<img src="/images/USER_MOD_ALT_CONFIG_UI.png" width="50%">
 
 PCB gerber of proyect is included in folder PCB
 

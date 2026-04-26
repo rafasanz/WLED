@@ -24,6 +24,19 @@ pio run -e esp32s3_n16r8_hub75 -t upload
 
 Use the USB-to-UART Type-C port for the most reliable flashing and serial logs.
 
+## Publish a GitHub release from your fork
+
+This repo includes a dedicated GitHub Actions workflow for the `esp32s3_n16r8_hub75` environment. Push a tag that starts with `hub75-` and GitHub will build the firmware and publish it as a prerelease in your fork.
+
+Example:
+
+```powershell
+git tag hub75-2026-04-26-1
+git push origin hub75-2026-04-26-1
+```
+
+The workflow copies `.github/platformio_override.esp32s3_n16r8_hub75.ini` into the temporary CI override file before building, so keep that tracked file updated whenever you change your local HUB75 build settings.
+
 ## HUB75 signal mapping
 
 Use the panel signal names printed on the HUB75 connector or adapter board. The physical IDC pin numbering can vary a bit across HUB75 vs HUB75E panels, but the signal names are consistent.

@@ -1,0 +1,65 @@
+name: HUB75 Release CI
+
+on:
+  push:
+    tags:
+      - 'hub75-*'
+
+permissions:
+  contents: write
+
+jobs:
+  release_hub75:
+    name: Build ESP32-S3 N16R8 HUB75
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - run: npm ci
+
+      - name: Cache PlatformIO
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.platformio/.cache
+            ~/.buildcache
+            build_output
+          key: pio-${{ runner.os }}-esp32s3_n16r8_hub75-${{ hashFiles('platformio.ini', '.github/platformio_override.esp32s3_n16r8_hub75.ini', 'pio-scripts/output_bins.py') }}-${{ hashFiles('wled00/**', 'usermods/**') }}
+          restore-keys: pio-${{ runner.os }}-esp32s3_n16r8_hub75-${{ hashFiles('platformio.ini', '.github/platformio_override.esp32s3_n16r8_hub75.ini', 'pio-scripts/output_bins.py') }}-
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install PlatformIO
+        run: pip install -r requirements.txt
+
+      - name: Add HUB75 environment
+        run: |
+          cp -v .github/platformio_override.esp32s3_n16r8_hub75.ini platformio_override.ini
+          cat platformio_override.ini
+
+      - name: Build firmware
+        run: pio run -e esp32s3_n16r8_hub75
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: firmware-esp32s3_n16r8_hub75
+          path: |
+            build_output/release/WLED_*_ESP32-S3_N16R8_HUB75.bin
+
+      - name: Publish release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: ESP32-S3 N16R8 HUB75 ${{ github.ref_name }}
+          prerelease: true
+          files: |
+            build_output/release/WLED_*_ESP32-S3_N16R8_HUB75.bin

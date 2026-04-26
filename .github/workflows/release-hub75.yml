@@ -60,6 +60,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           name: ESP32-S3 N16R8 HUB75 ${{ github.ref_name }}
-          prerelease: true
+          prerelease: false
+          make_latest: true
           files: |
             build_output/release/WLED_*_ESP32-S3_N16R8_HUB75.bin

@@ -860,7 +860,15 @@ BusHub75Matrix::BusHub75Matrix(const BusConfig &bc) : Bus(bc.type, bc.start, bc.
 
 #elif defined(CONFIG_IDF_TARGET_ESP32S3) && defined(BOARD_HAS_PSRAM)// ESP32-S3 with PSRAM
 
-#if defined(MOONHUB_S3_PINOUT)
+#if defined(ESP32S3_N16R8_DUALUSB_HUB75_PINOUT)
+  DEBUGBUS_PRINTLN("MatrixPanel_I2S_DMA - ESP32-S3 N16R8 dual USB pinout");
+
+  // Common 42-pin dual USB-C ESP32-S3-N16R8 boards expose all of these pins on the
+  // side headers, unlike the generic S3+PSRAM mapping which uses GPIO8 for LAT.
+  // Order: R1, G1, B1, R2, G2, B2, A, B, C, D, E, LAT, OE, CLK
+  mxconfig.gpio = { 1, 2, 42, 41, 40, 39, 45, 48, 47, 21, 38, 4, 3, 18 };
+
+#elif defined(MOONHUB_S3_PINOUT)
   DEBUGBUS_PRINTLN("MatrixPanel_I2S_DMA - T7 S3 with PSRAM, MOONHUB pinout");
 
   // HUB75_I2S_CFG::i2s_pins _pins={R1_PIN, G1_PIN, B1_PIN, R2_PIN, G2_PIN, B2_PIN, A_PIN, B_PIN, C_PIN, D_PIN, E_PIN, LAT_PIN, OE_PIN, CLK_PIN};

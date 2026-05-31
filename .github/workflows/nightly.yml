@@ -1,10 +1,8 @@
 
 name: Deploy Nightly
 on:
-  # This can be used to automatically publish nightlies at UTC nighttime
-  schedule:
-    - cron: '0 2 * * *' # run at 2 AM UTC
-  # This can be used to allow manually triggering nightlies from the web interface
+  # Automated nightlies are disabled in this fork. Keep manual dispatch available
+  # for troubleshooting without sending a daily failure notification.
   workflow_dispatch:
 
 env:

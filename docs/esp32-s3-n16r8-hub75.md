@@ -1,4 +1,4 @@
-# ESP32-S3-N16R8 + HUB75 wiring for WLED 16 beta
+# ESP32-S3-N16R8 + HUB75 wiring for WLED
 
 This setup targets the common dual USB-C ESP32-S3-N16R8 development board shown in the photo, using a custom WLED build environment named `esp32s3_n16r8_hub75`.
 
@@ -26,13 +26,13 @@ Use the USB-to-UART Type-C port for the most reliable flashing and serial logs.
 
 ## Publish a GitHub release from your fork
 
-This repo includes a dedicated GitHub Actions workflow for the `esp32s3_n16r8_hub75` environment. Push a tag that starts with `hub75-` and GitHub will build the firmware and publish it as a prerelease in your fork.
+This repo includes a dedicated GitHub Actions workflow for the `esp32s3_n16r8_hub75` environment. Push a tag that starts with `hub75-` and GitHub will build the firmware and publish it as a release in your fork.
 
 Example:
 
 ```powershell
-git tag hub75-2026-04-26-1
-git push origin hub75-2026-04-26-1
+git tag hub75-YYYY-MM-DD-N
+git push origin hub75-YYYY-MM-DD-N
 ```
 
 The workflow copies `.github/platformio_override.esp32s3_n16r8_hub75.ini` into the temporary CI override file before building, so keep that tracked file updated whenever you change your local HUB75 build settings.

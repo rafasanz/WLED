@@ -19,6 +19,8 @@ dual USB-C ESP32-S3-N16R8 board connected to HUB75 panels.
 - `.github/workflows/nightly.yml` intentionally has no scheduled trigger in this
   fork. Upstream nightlies are useful for WLED development, but this fork only
   needs manually triggered troubleshooting builds and explicit HUB75 releases.
+- `supports3D/` stores the STL models used to mount the ESP32-S3 board, HUB75
+  connector and LED panel.
 
 ## Upstream sync history
 
@@ -29,6 +31,8 @@ dual USB-C ESP32-S3-N16R8 board connected to HUB75 panels.
 - Updated the custom environment to use the current upstream-pinned HUB75 driver
   dependency and the default half-scan HUB75 LED type.
 - Disabled scheduled nightly builds in this fork.
+- Added the `supports3D/` folder with the three project-specific STL models and
+  its own README.
 
 ## Updating from WLED
 
